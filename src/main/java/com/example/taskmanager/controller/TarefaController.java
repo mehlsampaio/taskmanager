@@ -35,7 +35,7 @@ public class TarefaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tarefa> update(@PathVariable("id") long id, @RequestBody Tarefa tarefa){
+    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Tarefa tarefa){
         return repository.findById(id).map(record -> {
             record.setNome(tarefa.getNome());
             record.setDataEntrega(tarefa.getDataEntrega());
