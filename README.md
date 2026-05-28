@@ -11,11 +11,10 @@
 
 <h2 align="center">Funcionalidades</h2>
 <p align="center">
-• Criar Tarefa (<code>POST /tarefas</code>) <br>
-• Listar Tarefas (<code>GET /tarefas</code>) <br>
-• Buscar Tarefas por Id(<code>GET /tarefas/{id}</code>)<br>
-• Atualizar Tarefa (<code>PUT /tarefas/{id}</code>)<br>
-• Deletar Tarefa (<code>DELETE /tarefas/{id}</code>)
+• Criar Tarefa<br>
+• Buscar Tarefas por Id<br>
+• Atualizar Tarefa<br>
+• Deletar Tarefa 
 </p>
 
 <h1></h1>
@@ -54,7 +53,7 @@ spring.datasource.password=sua_senha</code></pre>
 <p align="center"><strong>A coleção de testes do Bruno está disponível em <code>/bruno</code></strong>
 </p> 
 
-### Como executar os testes:
+### Como executar os testes
 1. Baixe e instale o Bruno em: https://www.usebruno.com/
 2. Abra o aplicativo Bruno
 3. Clique em: `` Open Collection ``
@@ -74,17 +73,23 @@ spring.datasource.password=sua_senha</code></pre>
 }
 ```
 
-### Listar Tarefas
-- Método: `GET`
-- URL: `http://localhost:8080/tarefas`
-
 ### Buscar Tarefa por ID
 - Método: `GET`
-- URL: `http://localhost:8080/tarefas/{id}`
+- URL: `http://localhost:8080/tarefas?id={id}`
+- Query Parameter:
+
+| Name | Value        |
+|------|--------------|
+| `id` | `1` (exemplo)|
 
 ### Atualizar Tarefa
 - Método: `PUT`
-- URL: `http://localhost:8080/tarefas/{id}`
+- URL: `http://localhost:8080/tarefas?id={id}`
+- Query Parameter:
+
+| Name | Value        |
+|------|--------------|
+| `id` | `1` (exemplo)|
 - Body (JSON):
 ```json
 {
@@ -96,4 +101,9 @@ spring.datasource.password=sua_senha</code></pre>
 
 ### Deletar Tarefa
 - Método: `DELETE`
-- URL: `http://localhost:8080/tarefas/{id}`
+- URL: `http://localhost:8080/tarefas?id={id}`
+- Query Parameter:
+
+| Name | Value        |
+|------|--------------|
+| `id` | `1` (exemplo)|
