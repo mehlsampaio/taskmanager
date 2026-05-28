@@ -1,56 +1,43 @@
 package com.example.taskmanager.controller;
 
-import com.example.taskmanager.model.Tarefa;
-import com.example.taskmanager.repository.TarefaRepository;
+import com.example.taskmanager.business.TarefaService;
+import com.example.taskmanager.infrastructure.entity.Tarefa;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping({"/tarefas"})
 public class TarefaController {
 
-    private TarefaRepository repository;
+    @Autowired
+    private TarefaService tarefaService;
 
-    TarefaController(TarefaRepository tarefaRepository){
-        this.repository = tarefaRepository;
-
-    }
-
-    @GetMapping
-    public List<?> findAll(){
-        return repository.findAll();
-    }
-
-    @GetMapping(path = {"/{id}"})
-    public ResponseEntity<?> findById(@PathVariable long id){
-        return repository.findById(id).map(record -> ResponseEntity.ok().body(record)) .orElse(ResponseEntity.notFound().build());
-
-    }
-
+    @Operation(summary = "Criar Tarefa")
     @PostMapping
-    public Tarefa create(@RequestBody Tarefa tarefa){
-        return repository.save(tarefa);
+    public ResponseEntity<Void> salvarTarefa(@RequestBody Tarefa tarefa){
+        tarefaService.salvarTarefa(tarefa);
+        return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Tarefa tarefa){
-        return repository.findById(id).map(record -> {
-            record.setNome(tarefa.getNome());
-            record.setDataEntrega(tarefa.getDataEntrega());
-            record.setResponsavel(tarefa.getResponsavel());
-            Tarefa updated = repository.save(record);
-            return ResponseEntity.ok().body(updated);
-        }).orElse(ResponseEntity.notFound().build());
+    @Operation(summary = "Busca tarefas por id")
+    @GetMapping
+    public ResponseEntity<Tarefa> buscarTarefaPorId(@RequestParam long id){
+        return ResponseEntity.ok(tarefaService.buscarTarefaPorId(id));
     }
 
-    @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<?> delete(@PathVariable long id){
-        return repository.findById(id).map(record ->{
-            repository.deleteById(id);
-            return ResponseEntity.ok().build();
-        }).orElse(ResponseEntity.notFound().build());
+    @Operation(summary = "Deleta tarefas por id")
+    @DeleteMapping
+    public ResponseEntity<Void> deletarTarefaPorId(@RequestParam long id) {
+        tarefaService.deletarTarefaPorId(id);
+        return ResponseEntity.ok().build();
     }
 
+    @Operation(summary = "Atualiza tarefa")
+    @PutMapping
+    public ResponseEntity<Void> atualizarTarefaPorId(@RequestParam long id, @RequestBody Tarefa tarefa) {
+        tarefaService.atualizarTarefaPorId(id, tarefa);
+        return ResponseEntity.ok().build();
+    }
 }
