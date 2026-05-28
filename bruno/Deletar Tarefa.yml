@@ -1,11 +1,15 @@
 info:
   name: Deletar Tarefa
   type: http
-  seq: 5
+  seq: 4
 
 http:
   method: DELETE
-  url: http://localhost:8080/tarefas/2
+  url: http://localhost:8080/tarefas?id=2
+  params:
+    - name: id
+      value: "2"
+      type: query
   auth: inherit
 
 settings:

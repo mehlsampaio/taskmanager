@@ -1,11 +1,21 @@
 info:
   name: Atualizar Tarefa
   type: http
-  seq: 4
+  seq: 3
 
 http:
   method: PUT
-  url: http://localhost:8080/tarefas/1
+  url: http://localhost:8080/tarefas?id=1
+  params:
+    - name: id
+      value: "1"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Estudar Spring Boot - Atualizada"
+      }
   auth: inherit
 
 settings:

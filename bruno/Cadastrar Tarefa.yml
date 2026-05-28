@@ -6,6 +6,14 @@ info:
 http:
   method: POST
   url: http://localhost:8080/tarefas
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Jogar o lixo fora",
+        "dataEntrega": "2026-05-29",
+        "responsavel": "Leticia"
+      }
   auth: inherit
 
 settings:
