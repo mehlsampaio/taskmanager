@@ -22,6 +22,7 @@ public class TarefaService {
     }
 
     public void deletarTarefaPorId(long id) {
+        buscarTarefaPorId(id);
         tarefaRepository.deleteById(id);
     }
 

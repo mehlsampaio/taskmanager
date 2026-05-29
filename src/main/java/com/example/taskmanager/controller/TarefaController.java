@@ -3,6 +3,7 @@ package com.example.taskmanager.controller;
 import com.example.taskmanager.business.TarefaService;
 import com.example.taskmanager.infrastructure.entity.Tarefa;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class TarefaController {
 
     @Operation(summary = "Criar Tarefa")
     @PostMapping
-    public ResponseEntity<Void> salvarTarefa(@RequestBody Tarefa tarefa){
+    public ResponseEntity<Void> salvarTarefa(@RequestBody @Valid Tarefa tarefa){
         tarefaService.salvarTarefa(tarefa);
         return ResponseEntity.ok().build();
     }
