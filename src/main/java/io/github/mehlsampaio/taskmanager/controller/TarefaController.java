@@ -5,6 +5,8 @@ import io.github.mehlsampaio.taskmanager.service.TarefaService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +17,11 @@ public class TarefaController {
     @Autowired
     private TarefaService tarefaService;
 
-    @Operation(summary = "Criar Tarefa")
+    @Operation(summary = "Cria Tarefa")
     @PostMapping
-    public ResponseEntity<Void> salvarTarefa(@RequestBody @Valid Tarefa tarefa){
-        tarefaService.salvarTarefa(tarefa);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Tarefa> salvarTarefa(@RequestBody @Valid Tarefa tarefa){
+        Tarefa tarefaCriada = tarefaService.salvarTarefa(tarefa);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tarefaCriada);
     }
 
     @Operation(summary = "Busca tarefas por id")
@@ -32,14 +34,14 @@ public class TarefaController {
     @DeleteMapping
     public ResponseEntity<Void> deletarTarefaPorId(@RequestParam long id) {
         tarefaService.deletarTarefaPorId(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @Operation(summary = "Atualiza tarefa")
     @PutMapping
-    public ResponseEntity<Void> atualizarTarefaPorId(@RequestParam long id, @RequestBody Tarefa tarefa) {
-        tarefaService.atualizarTarefaPorId(id, tarefa);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Tarefa> atualizarTarefaPorId(@RequestParam long id, @RequestBody Tarefa tarefa) {
+        Tarefa tarefaAtualizada = tarefaService.atualizarTarefaPorId(id, tarefa);
+        return ResponseEntity.ok().body(tarefaAtualizada);
     }
 
 }

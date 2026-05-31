@@ -11,8 +11,8 @@ public class TarefaService {
     @Autowired
     private TarefaRepository tarefaRepository;
 
-    public void salvarTarefa(Tarefa tarefa) {
-        tarefaRepository.saveAndFlush(tarefa);
+    public Tarefa salvarTarefa(Tarefa tarefa) {
+        return tarefaRepository.saveAndFlush(tarefa);
     }
 
     public Tarefa buscarTarefaPorId(long id) {
@@ -26,7 +26,7 @@ public class TarefaService {
         tarefaRepository.deleteById(id);
     }
 
-    public void atualizarTarefaPorId(long id, Tarefa tarefa) {
+    public Tarefa atualizarTarefaPorId(long id, Tarefa tarefa) {
         Tarefa tarefa1 = buscarTarefaPorId(id);
         Tarefa tarefaAtualizada = Tarefa.builder()
                 .nome(tarefa.getNome() != null ?
@@ -37,6 +37,6 @@ public class TarefaService {
                         tarefa.getResponsavel() : tarefa1.getResponsavel())
                 .id(tarefa1.getId())
                 .build();
-        tarefaRepository.saveAndFlush(tarefaAtualizada);
+        return tarefaRepository.saveAndFlush(tarefaAtualizada);
     }
 }
