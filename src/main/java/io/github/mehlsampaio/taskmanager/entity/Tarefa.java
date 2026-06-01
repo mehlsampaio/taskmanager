@@ -1,6 +1,8 @@
 package io.github.mehlsampaio.taskmanager.entity;
 
 
+import io.github.mehlsampaio.taskmanager.enums.Prioridade;
+import io.github.mehlsampaio.taskmanager.enums.StatusTarefa;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -25,19 +27,29 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O campo nome não pode ser nulo.")
+    @NotBlank(message = "O campo nome é obrigatório.")
     @Size(max = 60, message = "O campo nome deve conter no máximo 60 caracteres.")
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @NotNull(message = "O campo dataEntrega não pode ser nulo.")
+    @NotNull(message = "O campo dataEntrega é obrigatório.")
     @FutureOrPresent(message = "A data de entrega não pode ser no passado.")
     @Column(name = "data_entrega", nullable = false)
     private LocalDate dataEntrega;
 
-    @NotBlank(message = "O campo responsavel não pode ser nulo.")
+    @NotBlank(message = "O campo responsavel é obrigatório.")
     @Size(max = 60, message = "O campo responsavel deve conter no máximo 60 caracteres.")
     @Column(name = "responsavel", nullable = false)
     private String responsavel;
+
+    @NotNull(message = "O campo prioridade é obrigatório")
+    @Column(name = "prioridade", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Prioridade prioridade;
+
+    @NotNull(message = "O campo statusTarefa é obrigatório.")
+    @Column(name = "status_tarefa", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private StatusTarefa statusTarefa;
 
 }
