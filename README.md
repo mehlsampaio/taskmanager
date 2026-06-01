@@ -21,13 +21,14 @@
 
 <div align="center">
 
-| Campo        | Tipo       | Observações                        |
-|--------------|------------|------------------------------------|
-| id           | Long       | Auto-increment                     |
-| nome         | String     | Obrigatório, até 60 caracteres     |
-| dataEntrega  | LocalDate  | Obrigatório, formato `yyyy-MM-dd`  |
-| responsavel  | String     | Obrigatório, até 60 caracteres     |
-
+| Campo        | Tipo       | Observações                       |
+|--------------|------------|-----------------------------------|
+| id           | Long       | Auto-increment                    |
+| nome         | String     | Obrigatório, até 60 caracteres    |
+| dataEntrega  | LocalDate  | Obrigatório, formato `yyyy-MM-dd` |
+| responsavel  | String     | Obrigatório, até 60 caracteres    |
+| prioridade   | Enum       | Obrigatório, `[ALTA, MEDIA, BAIXA]` |
+| statusTarefa | Enum       | Obrigatório, `[NOVO, EM_ANDAMENTO, CONCLUIDA, CANCELADA, ATRASADA]`|
 </div>
 
 <h2 align="center">Como Executar</h2>
@@ -68,8 +69,10 @@ spring.datasource.password=sua_senha</code></pre>
 ```json
 {
   "nome": "Estudar Spring Boot",
+  "dataEntrega": "2026-06-03",
   "responsavel": "Mehl",
-  "dataEntrega": "2025-08-28"
+  "prioridade": "MEDIA",
+  "statusTarefa": "EM_ANDAMENTO"
 }
 ```
 
@@ -83,6 +86,7 @@ spring.datasource.password=sua_senha</code></pre>
 | `id` | `1` (exemplo)|
 
 ### Atualizar Tarefa
+>Este endpoint permite atualização parcial de dados. Campos não informados na requisição não serão modificados.
 - Método: `PUT`
 - URL: `http://localhost:8080/tarefas?id={id}`
 - Query Parameter:
@@ -94,8 +98,7 @@ spring.datasource.password=sua_senha</code></pre>
 ```json
 {
   "nome": "Estudar Spring Boot - Atualizado",
-  "responsavel": "Mehl",
-  "dataEntrega": "2025-08-28"
+  "prioridade": "ALTA"
 }
 ```
 
