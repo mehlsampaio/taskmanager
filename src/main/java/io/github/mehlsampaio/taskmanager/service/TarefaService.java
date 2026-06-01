@@ -35,6 +35,10 @@ public class TarefaService {
                         tarefa.getDataEntrega() : tarefa1.getDataEntrega())
                 .responsavel(tarefa.getResponsavel() != null ?
                         tarefa.getResponsavel() : tarefa1.getResponsavel())
+                .prioridade(tarefa.getPrioridade() != null ?
+                        tarefa.getPrioridade() : tarefa1.getPrioridade())
+                .statusTarefa(tarefa.getStatusTarefa() != null ?
+                        tarefa.getStatusTarefa() : tarefa1.getStatusTarefa())
                 .id(tarefa1.getId())
                 .build();
         return tarefaRepository.saveAndFlush(tarefaAtualizada);
