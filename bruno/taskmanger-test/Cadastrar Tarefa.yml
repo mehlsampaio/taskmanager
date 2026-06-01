@@ -10,9 +10,11 @@ http:
     type: json
     data: |-
       {
-        "nome": "Estudar Spring Boot",
-        "dataEntrega": "2026-06-01",
-        "responsavel": "Mehl Sampaio"
+        "nome": "Realizar testes com Bruno",
+        "dataEntrega": "2026-06-04",
+        "responsavel": "Mehl",
+        "prioridade": "ALTA",
+        "statusTarefa": "CANCELADA"
       }
   auth: inherit
 
