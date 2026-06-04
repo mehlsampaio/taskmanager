@@ -62,6 +62,7 @@ spring.datasource.password=sua_senha</code></pre>
 5. O Bruno irá carregar automaticamente todas as requisições da API.
 
 
+> Para rodar as requisições de teste dos endpoints, acesse: **/bruno/taskmanager-endpoints**.
 ### Cadastrar Tarefa
 - Método: `POST`
 - URL: `http://localhost:8080/tarefas`
@@ -110,3 +111,70 @@ spring.datasource.password=sua_senha</code></pre>
 | Name | Value        |
 |------|--------------|
 | `id` | `1` (exemplo)|
+
+<h2 align="center">Exemplo de Response</h2>
+> Você pode rodar as requisições de teste de exceções em **/bruno/taskmanager-exceptions**.
+
+### ❌ 404 : Recurso não encontrado
+> Ocorre quando uma tarefa solicitada não é encontrada. Afeta métodos **GET**, **PUT** e **DELETE**.
+```json
+{ 
+  "erro":"Tarefa não encontrada.",
+  "mensagem":"Recurso não encontrado",
+  "status":404,
+  "timestamp":"2026-06-04T15:46:41.643564938"
+}
+```
+
+### ❌ 400: Erro de validação do campo
+> Ocorre quando algum campo está nulo, vazio, excede o limite de caracteres ou quando a data de entrega é inválida (passada). Afeta Métodos **POST**, **PUT** e **GET**.
+```json
+{"mensagem":"Erro de validação do campo",
+  "erros":[{"mensagem":"O campo nome deve conter no máximo 60 caracteres.", 
+    "campo":"nome"}],
+  "status":400,
+  "timestamp":"2026-06-04T15:44:46.20525495"}
+```
+```json
+{"mensagem":"Erro de validação do campo",
+  "erros":[{"mensagem":"A data de entrega não pode ser no passado.",
+    "campo":"dataEntrega"}],
+  "status":400,
+  "timestamp":"2026-06-04T15:39:28.397174806"}
+```
+```json
+{"mensagem":"Erro de validação do campo",
+  "erros":[{"mensagem":"O campo responsavel é obrigatório.",
+    "campo":"responsavel"}],
+  "status":400,
+  "timestamp":"2026-06-04T15:34:44.397899168"}
+```
+### ✅ 201 Created
+> Ocorre quando uma requisição **POST** foi bem sucedida.
+```json
+{
+  "id": 4,
+  "nome": "Assistir aulas do curso de C#",
+  "dataEntrega": "2026-07-03",
+  "responsavel": "Joana",
+  "prioridade": "ALTA",
+  "statusTarefa": "EM_ANDAMENTO"
+}
+```
+
+### ✅ 204 No Content
+> Ocorre quando uma requisição **DELETE** foi bem sucedida.
+
+### ✅ 200 OK
+> Requisições **PUT** e **GET** bem sucedidas.
+```json
+{
+  "id": 3,
+  "nome": "Realizar testes com Bruno",
+  "dataEntrega": "2026-06-04",
+  "responsavel": "Mehl",
+  "prioridade": "ALTA",
+  "statusTarefa": "CANCELADA"
+}
+```
+
