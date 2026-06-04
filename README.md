@@ -113,6 +113,7 @@ spring.datasource.password=sua_senha</code></pre>
 | `id` | `1` (exemplo)|
 
 <h2 align="center">Exemplo de Response</h2>
+
 > Você pode rodar as requisições de teste de exceções em **/bruno/taskmanager-exceptions**.
 
 ### ❌ 404 : Recurso não encontrado
