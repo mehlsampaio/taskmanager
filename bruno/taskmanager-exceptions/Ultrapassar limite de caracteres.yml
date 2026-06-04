@@ -1,0 +1,25 @@
+info:
+  name: Ultrapassar limite de caracteres
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8080/tarefas
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Assistir aulas do curso de C# para conseguir participar do bootcamp da WoMakersCode",
+        "dataEntrega": "2026-07-03",
+        "responsavel": "Joana",
+        "prioridade": "ALTA",
+        "statusTarefa": "EM_ANDAMENTO"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

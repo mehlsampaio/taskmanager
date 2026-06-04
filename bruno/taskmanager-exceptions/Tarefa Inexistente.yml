@@ -1,0 +1,19 @@
+info:
+  name: Tarefa Inexistente
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: http://localhost:8080/tarefas?id=70
+  params:
+    - name: id
+      value: "70"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

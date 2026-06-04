@@ -1,0 +1,26 @@
+info:
+  name: Data de entrega no passado
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8080/tarefas
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Assistir curso de C#",
+        "dataEntrega": "2024-03-12",
+        "responsavel": "Joana",
+        "prioridade": "ALTA",
+        "statusTarefa": "CONCLUIDA"
+        
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
