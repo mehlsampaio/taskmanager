@@ -14,7 +14,7 @@ http:
         "dataEntrega": "2026-06-04",
         "responsavel": "Mehl",
         "prioridade": "ALTA",
-        "statusTarefa": "CANCELADA"
+        "statusTarefa": "EM_ANDAMENTO"
       }
   auth: inherit
 
