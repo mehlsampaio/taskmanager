@@ -1,7 +1,7 @@
 opencollection: 1.0.0
 
 info:
-  name: taskmanager-test
+  name: taskmanager-endpoint
 config:
   proxy:
     inherit: true
